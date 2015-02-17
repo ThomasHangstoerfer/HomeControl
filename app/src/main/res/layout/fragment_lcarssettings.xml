@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="de.bitcoder.homectrl.LCARSSettingsFragment"
+    android:background="#FF000000">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="left|center_vertical"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SETTINGS"
+            android:id="@+id/textView_settings"
+            android:layout_gravity="left|top"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_row="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/textView_hostname"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:textColor="@color/lcars_blue" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_hostname"
+            android:layout_gravity="left|center_vertical"
+            android:text="HOSTNAME"
+            android:textColor="@color/lcars_blue"
+            android:layout_column="1"
+            android:layout_row="1" />
+
+    </GridLayout>
+
+</FrameLayout>

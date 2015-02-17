@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="list"
+        android:id="@+id/button"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:onClick="ListButtonClicked" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="#ffffe267"
+        android:textSize="8dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GetDevs"
+        android:id="@+id/button_getDevs"
+        android:onClick="onTestButtonClicked"
+        android:layout_above="@+id/textView2"
+        android:layout_toEndOf="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DevList"
+        android:id="@+id/button_DevList"
+        android:onClick="onDevListButtonClicked"
+        android:layout_alignTop="@+id/buttonParty"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Party"
+        android:id="@+id/buttonParty"
+        android:layout_alignTop="@+id/button_getDevs"
+        android:layout_toEndOf="@+id/button_getDevs"
+        android:onClick="onPartyButtonClicked" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LCARS"
+        android:id="@+id/buttonLCARS"
+        android:layout_below="@+id/textView"
+        android:layout_toStartOf="@+id/button_DevList"
+        android:layout_marginEnd="40dp"
+        android:onClick="onLCARSButtonClicked" />
+
+</RelativeLayout>
