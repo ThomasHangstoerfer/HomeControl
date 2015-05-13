@@ -2,11 +2,17 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="lcars_orange">#FFff9900</color>
+    <color name="lcars_orange_dark">#FFAA7700</color>
     <color name="lcars_brown">#FFd7a46e</color>
+    <color name="lcars_brown_dark">#FFb7944e</color>
     <color name="lcars_blue">#FF9a99ff</color>
+    <color name="lcars_blue_dark">#FF7a79df</color>
     <color name="lcars_green">#FF99ccff</color>
+    <color name="lcars_green_dark">#FF79acdf</color>
     <color name="lcars_darkpurple">#FFcc6666</color>
+    <color name="lcars_darkpurple_dark">#FFac4646</color>
     <color name="lcars_lightpurple">#FFd6aed6</color>
+    <color name="lcars_lightpurple_dark">#FFb69eb6</color>
 
 
 </resources>

@@ -21,7 +21,7 @@
         android:gravity="bottom|right"
         android:textSize="16dp"
         android:textAlignment="gravity"
-        android:background="@color/lcars_lightpurple"
+        android:background="@drawable/lcars_button_lightpurple_left"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -38,7 +38,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_orange"
+        android:background="@drawable/lcars_button_orange_up"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -67,7 +67,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_blue"
+        android:background="@drawable/lcars_button_blue_up"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -82,7 +82,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_orange"
+        android:background="@drawable/lcars_button_orange_down"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -111,7 +111,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_blue"
+        android:background="@drawable/lcars_button_blue_down"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -126,7 +126,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_blue"
+        android:background="@drawable/lcars_button_blue_up"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -155,7 +155,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_blue"
+        android:background="@drawable/lcars_button_blue_down"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -170,7 +170,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_brown"
+        android:background="@drawable/lcars_button_brown_up"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -199,7 +199,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_brown"
+        android:background="@drawable/lcars_button_brown_down"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -214,7 +214,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_brown"
+        android:background="@drawable/lcars_button_brown_up"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -244,7 +244,7 @@
         android:textSize="16dp"
         android:textAlignment="gravity"
         android:gravity="bottom|right"
-        android:background="@color/lcars_brown"
+        android:background="@drawable/lcars_button_brown_down"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
@@ -259,7 +259,7 @@
         android:textAlignment="gravity"
         android:gravity="bottom|right"
         style="?android:attr/buttonStyleSmall"
-        android:background="@color/lcars_lightpurple"
+        android:background="@drawable/lcars_button_lightpurple_right"
         android:layout_margin="5dp"
         android:padding="2dp" />
 
