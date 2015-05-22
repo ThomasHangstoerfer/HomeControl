@@ -1,12 +1,14 @@
 package de.bitcoder.homectrl;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import de.bitcoder.homectrl.R;
 
@@ -65,7 +67,22 @@ public class StatisticsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics, container, false);
+        View view = inflater.inflate(R.layout.fragment_statistics, container, false);
+        System.out.println("onCreateView");
+        Resources res = getResources();
+
+        final BarChart pie = (BarChart) view.findViewById(R.id.chart);
+        pie.setShowText(true);
+        pie.setTextPos(BarChart.TEXTPOS_RIGHT);
+        pie.setTextHeight(10);
+        pie.addItem("Agamemnon", 2, res.getColor(R.color.seafoam));
+        pie.addItem("Bocephus", 3.5f, res.getColor(R.color.chartreuse));
+        pie.addItem("Calliope", 2.5f, res.getColor(R.color.emerald));
+        pie.addItem("Daedalus", 3, res.getColor(R.color.bluegrass));
+        pie.addItem("Euripides", 1, res.getColor(R.color.turquoise));
+        pie.addItem("Ganymede", 3, res.getColor(R.color.slate));
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
