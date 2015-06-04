@@ -1,0 +1,23 @@
+
+
+HomeCtrl
+========
+
++ Neues Menü "Bad" mit Anzeige von Temperatur, Luftfeuchtigkeit, Fenstersensor, Temp-Verlauf, Feuchtigkeits-Verlauf, Fenster-Öffnungen
++ Die in 'Settings' eingegebenen Werte müssen persistent sein und beim Verbindungsaufbau benutzt werden
++ Set/Clear-Buttons müssen ein Feedback anzeigen, obs geklappt hat.
+  Evtl. beim Drücken den Button oder den Text einfärben (z.b. gelb) und dann beim Reply kurz grün oder rot schalten
+
+
+Fonts:
+  datei nach assets/fonts/
+  lowecase!
+    Typeface typeFace= Typeface.createFromAsset(getActivity().getAssets(), "fonts/lcarsgtj3.ttf");
+    mTextView.setTypeface(typeFace);
+
+Fragment-Transition:
+  Zusätzlich zu setCustomAnimations(int enter, int exit)
+  noch setTransition(TRANSIT_NONE)
+
+Button-Shape-Generator
+ http://angrytools.com/android/button/

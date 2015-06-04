@@ -10,4 +10,17 @@ public class Reading {
 	@SerializedName("CommandAccepted")
 	public State commandAccepted;
 
+	@SerializedName("desired-temp")
+	public State desiredTemp;
+
+	@SerializedName("measured-temp")
+	public State measuredTemp;
+
+	@SerializedName("humidity")
+	public State humidity;
+
+	@SerializedName("battery")
+	public State battery;
+
+
 }

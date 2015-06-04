@@ -314,8 +314,23 @@ public class FHEMConnection {
 			@SuppressWarnings("rawtypes") Class clazz) {
 		try {
 			String jsonObject = callMethod(methodName, params);
-            System.out.println("jsonObject: " + jsonObject);
-            return new Gson().fromJson(jsonObject, DeviceResponse.class);
+			final int lineSize = 200;
+			if ( jsonObject.length() > lineSize )
+			{
+				System.out.println("jsonObject: ");
+				String s = jsonObject;
+				while ( s.length() > lineSize )
+				{
+					System.out.println( s.substring(0, lineSize) );
+					s = s.substring(lineSize);
+				}
+				System.out.println( s );
+			}
+			else
+			{
+				System.out.println("jsonObject: " + jsonObject);
+			}
+			return new Gson().fromJson(jsonObject, DeviceResponse.class);
 //            return new Gson().fromJson(jsonObject, clazz);
 
             //return new ResponseObject();

@@ -74,7 +74,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_dev"
+            android:id="@+id/button_bad"
             android:layout_column="0"
             android:layout_row="2"
             android:gravity="bottom|right"
@@ -82,7 +82,7 @@
             android:layout_gravity="fill"
             android:background="@color/lcars_orange"
             android:layout_marginTop="2dp"
-            android:text="DEV" />
+            android:text="BATHROOM" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -97,6 +97,20 @@
             android:layout_gravity="fill"
             android:background="@color/lcars_orange"
             android:layout_marginTop="2dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_dev"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:gravity="bottom|right"
+            android:textSize="16dp"
+            android:layout_gravity="fill"
+            android:background="@color/lcars_darkpurple"
+            android:layout_marginTop="2dp"
+            android:text="DEV" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

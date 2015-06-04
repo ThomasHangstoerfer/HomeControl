@@ -35,6 +35,7 @@ public class LCARSMainActivity extends Activity
 
     Intent mainActIntent = null;
     LCARSPartyFragment mPartyFragment = null;
+    LCARSBadFragment mBadFragment = null;
     StatisticsFragment mStatisticsFragment = null;
     LCARSSettingsFragment mSettingsFragment = null;
 
@@ -67,16 +68,31 @@ public class LCARSMainActivity extends Activity
         btnParty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( mPartyFragment == null ) {
+                if (mPartyFragment == null) {
                     mPartyFragment = new LCARSPartyFragment();
                 }
                 getFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_NONE)
-                        .setCustomAnimations( R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
                         .replace(R.id.container, mPartyFragment)
                         .commit();
             }
         });
+        Button btnBad = (Button) findViewById(R.id.button_bad);
+            btnBad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( mBadFragment == null ) {
+                    mBadFragment = new LCARSBadFragment();
+                }
+                getFragmentManager().beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_NONE)
+                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .replace(R.id.container, mBadFragment)
+                        .commit();
+            }
+        });
+
         Button btnStatistics = (Button) findViewById(R.id.button_statistics);
         btnStatistics.setOnClickListener(new View.OnClickListener() {
             @Override

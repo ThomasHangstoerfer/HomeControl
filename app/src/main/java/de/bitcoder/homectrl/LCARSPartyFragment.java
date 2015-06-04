@@ -27,7 +27,7 @@ public class LCARSPartyFragment extends Fragment {
 
     String devName_Clima = "CUL_HM_HM_CC_RT_DN_2DD63F_Clima";
     Calendar c = Calendar.getInstance();
-    double tempValue = 18.0;
+    double tempValue = 18.0; // init-value
 
     String serverIp = "192.168.178.27";
     int serverPort = 7073;
@@ -61,7 +61,7 @@ public class LCARSPartyFragment extends Fragment {
                         try {
                             // set CUL_HM_HM_CC_RT_DN_2DD63F_Clima controlParty 19 31.01.15 9:30 31.01.15 16:00
 
-                            String param = tempValue + " 31.01.15 9:30 " +
+                            String param = tempValue + " 31.01.15 9:30 " + // start-date of party-mode
                                     Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "." +
                                     Integer.toString(c.get(Calendar.MONTH)+1) + "." +
                                     Integer.toString(c.get(Calendar.YEAR)).substring(2) + " " +
@@ -78,6 +78,7 @@ public class LCARSPartyFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    //btnSetPartyMode.showResult( resp.isTrue() );
                                     Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
                                             Toast.LENGTH_LONG).show();
                                 }
