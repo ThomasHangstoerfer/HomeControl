@@ -75,13 +75,23 @@ public class StatisticsFragment extends Fragment {
         pie.setShowText(true);
         pie.setTextPos(BarChart.TEXTPOS_RIGHT);
         pie.setTextHeight(10);
+
+        /*
         pie.addItem("Agamemnon", 2, res.getColor(R.color.seafoam));
         pie.addItem("Bocephus", 3.5f, res.getColor(R.color.chartreuse));
         pie.addItem("Calliope", 2.5f, res.getColor(R.color.emerald));
         pie.addItem("Daedalus", 3, res.getColor(R.color.bluegrass));
         pie.addItem("Euripides", 1, res.getColor(R.color.turquoise));
         pie.addItem("Ganymede", 3, res.getColor(R.color.slate));
+        */
+        pie.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+        for (int i = 0; i < 30; i++ )
+        {
+            float randomNum = 10 + (int)(Math.random()*90);
+            pie.addItem("Ganymede", randomNum, res.getColor(i%2==0?R.color.lcars_green:R.color.lcars_green_dark));
 
+        }
+        pie.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
         return view;
     }
 

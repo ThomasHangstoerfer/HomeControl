@@ -7,7 +7,8 @@ HomeCtrl
 + Die in 'Settings' eingegebenen Werte müssen persistent sein und beim Verbindungsaufbau benutzt werden
 + Set/Clear-Buttons müssen ein Feedback anzeigen, obs geklappt hat.
   Evtl. beim Drücken den Button oder den Text einfärben (z.b. gelb) und dann beim Reply kurz grün oder rot schalten
-
++ LCARS-Buttons erweitern, dass die Textausrichtung automatisch gesetzt wird, je nach dem obs ein rechts/links/oben/unten Button ist
++ LCARS-Buttons zusammenfassen, so dass nicht für jede Richtung ein eigener Button sein muss
 
 Fonts:
   datei nach assets/fonts/
@@ -21,3 +22,7 @@ Fragment-Transition:
 
 Button-Shape-Generator
  http://angrytools.com/android/button/
+
+Diagramm:
+  http://developer.android.com/training/custom-views/index.html
+ 
