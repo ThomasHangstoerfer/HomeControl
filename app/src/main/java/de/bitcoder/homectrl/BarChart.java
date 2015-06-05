@@ -844,12 +844,24 @@ public class BarChart extends ViewGroup {
                 canvas.setMatrix(mTransform);
             }
 
+            Paint p = new Paint(mPiePaint);
+            p.setStyle(Paint.Style.STROKE);
+            p.setStrokeWidth(3);
+            p.setColor(getResources().getColor(R.color.lcars_orange_dark));
+            canvas.drawRect(mBounds, p);
+
+            int i = 0;
             for (Item it : mData) {
                 mPiePaint.setShader(it.mShader);
-                canvas.drawArc(mBounds,
-                        360 - it.mEndAngle,
-                        it.mEndAngle - it.mStartAngle,
-                        true, mPiePaint);
+                //canvas.drawArc(mBounds,
+                //        360 - it.mEndAngle,
+                //        it.mEndAngle - it.mStartAngle,
+                //        true, mPiePaint);
+                float left = 0 + i*50 + 10;
+                int randomNum = 100 + (int)(Math.random()*200);
+                float baseline = 180;
+                canvas.drawRect(left, 180 - randomNum, left + 50 - 10, 180, mPiePaint);
+                i++;
             }
         }
 
