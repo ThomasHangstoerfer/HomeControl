@@ -29,6 +29,8 @@ public class BarChart extends ViewGroup {
     private List<Item> mData = new ArrayList<Item>();
 
     private float mTotal = 0.0f;
+    private float mMinVal = 0.0f;
+    private float mMaxVal = 1.0f;
 
     private RectF mPieBounds = new RectF();
 
@@ -413,6 +415,8 @@ public class BarChart extends ViewGroup {
                 Math.min((int) (mHighlightStrength * (float) Color.blue(color)), 0xff)
         );
         mTotal += value;
+        mMinVal = Math.min(value, mMinVal);
+        mMaxVal = Math.max(value, mMaxVal);
 
         mData.add(it);
 
@@ -850,19 +854,48 @@ public class BarChart extends ViewGroup {
             p.setColor(getResources().getColor(R.color.lcars_orange_dark));
             canvas.drawRect(mBounds, p);
 
-            int i = 0;
-            for (Item it : mData) {
-                mPiePaint.setShader(it.mShader);
-                //canvas.drawArc(mBounds,
-                //        360 - it.mEndAngle,
-                //        it.mEndAngle - it.mStartAngle,
-                //        true, mPiePaint);
-                float left = 0 + i*50 + 10;
-                int randomNum = 100 + (int)(Math.random()*200);
-                float baseline = 180;
-                canvas.drawRect(left, 180 - randomNum, left + 50 - 10, 180, mPiePaint);
-                i++;
+            float oldStrokeWidth = mPiePaint.getStrokeWidth();
+            mPiePaint.setStrokeWidth( 4 );
+
+            float lastHeight = -1;
+
+            if ( /* mode */ true )
+            {
+                int i = 0;
+                float dist = mBounds.width() / mData.size();
+
+                for (Item it : mData) {
+                    mPiePaint.setShader(it.mShader);
+                    float height = it.mValue * mBounds.height() / mMaxVal;
+                    if ( lastHeight > -1 )
+                    {
+                        canvas.drawLine(i*dist - dist, lastHeight, i * dist , height, mPiePaint);
+                    }
+                    lastHeight = height;
+                    i++;
+                }
             }
+            else
+            {
+                int i = 0;
+                float baseline = mBounds.height();
+                float barWidth = 50;
+                for (Item it : mData) {
+                    mPiePaint.setShader(it.mShader);
+                    //canvas.drawArc(mBounds, 360 - it.mEndAngle, it.mEndAngle - it.mStartAngle, true, mPiePaint);
+                    float left = 0 + i*barWidth + 10;
+                    float height = it.mValue * mBounds.height() / mMaxVal;
+                    float bottom = baseline; // ganze balken
+                    //float bottom = baseline - height + 20; // nur oberes stück
+
+                    System.out.println("height = " + height + " mMaxVal = " + mMaxVal + " it.mValue = " + it.mValue + " mBounds.height() = " + mBounds.height());
+                    //int randomNum = 30 + (int)(Math.random()*baseline);
+                    canvas.drawRect(left, baseline - height, left + barWidth - 10, bottom, mPiePaint);
+                    i++;
+                }
+            }
+            mPiePaint.setStrokeWidth(oldStrokeWidth );
+
         }
 
         @Override
