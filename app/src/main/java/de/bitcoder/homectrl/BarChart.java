@@ -45,6 +45,7 @@ public class BarChart extends ViewGroup {
     private float mTextWidth = 0.0f;
     private float mTextHeight = 0.0f;
     private int mTextPos = TEXTPOS_LEFT;
+    private int mChartType = 0;
 
     private float mHighlightStrength = 1.15f;
 
@@ -150,6 +151,7 @@ public class BarChart extends ViewGroup {
             mTextWidth = a.getDimension(R.styleable.BarChart_labelWidth, 0.0f);
             mTextHeight = a.getDimension(R.styleable.BarChart_labelHeight, 0.0f);
             mTextPos = a.getInteger(R.styleable.BarChart_labelPosition, 0);
+            mChartType = a.getInteger(R.styleable.BarChart_chartType, 0);
             mTextColor = a.getColor(R.styleable.BarChart_labelColor, 0xff000000);
             mHighlightStrength = a.getFloat(R.styleable.BarChart_highlightStrength, 1.0f);
             mPieRotation = a.getInt(R.styleable.BarChart_pieRotation, 0);
@@ -265,6 +267,32 @@ public class BarChart extends ViewGroup {
                     "TextPos must be one of TEXTPOS_LEFT or TEXTPOS_RIGHT");
         }
         mTextPos = textPos;
+        invalidate();
+    }
+
+    /**
+     * Returns a value that specifies whether the label text is to the right
+     * or the left of the pie chart graphic.
+     *
+     * @return One of TEXTPOS_LEFT or TEXTPOS_RIGHT.
+     */
+    public int getChartType() {
+        return mChartType;
+    }
+
+    /**
+     * Set a value that specifies whether the label text is to the right
+     * or the left of the pie chart graphic.
+     *
+     * @param chartType TEXTPOS_LEFT to draw the text to the left of the graphic,
+     *                or TEXTPOS_RIGHT to draw the text to the right of the graphic.
+     */
+    public void setChartType(int chartType) {
+        if (chartType != 0 && chartType != 1 && chartType != 2) {
+            throw new IllegalArgumentException(
+                    "ChartType "+ chartType + " not supported");
+        }
+        mChartType = chartType;
         invalidate();
     }
 
@@ -859,7 +887,7 @@ public class BarChart extends ViewGroup {
 
             float lastHeight = -1;
 
-            if ( /* mode */ true )
+            if ( getChartType() == 2 ) // lines
             {
                 int i = 0;
                 float dist = mBounds.width() / mData.size();
@@ -875,7 +903,7 @@ public class BarChart extends ViewGroup {
                     i++;
                 }
             }
-            else
+            else // bars + levels
             {
                 int i = 0;
                 float baseline = mBounds.height();
@@ -885,8 +913,7 @@ public class BarChart extends ViewGroup {
                     //canvas.drawArc(mBounds, 360 - it.mEndAngle, it.mEndAngle - it.mStartAngle, true, mPiePaint);
                     float left = 0 + i*barWidth + 10;
                     float height = it.mValue * mBounds.height() / mMaxVal;
-                    float bottom = baseline; // ganze balken
-                    //float bottom = baseline - height + 20; // nur oberes stück
+                    float bottom = getChartType() == 0 ? baseline : baseline - height + 20; //  bars or levels
 
                     System.out.println("height = " + height + " mMaxVal = " + mMaxVal + " it.mValue = " + it.mValue + " mBounds.height() = " + mBounds.height());
                     //int randomNum = 30 + (int)(Math.random()*baseline);

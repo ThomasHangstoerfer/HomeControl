@@ -7,8 +7,16 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.bitcoder.homectrl.R;
+import de.bitcoder.homectrl.dummy.LCARSConfig;
+import de.fzi.fhemapi.model.server.MessageResponse;
+import de.fzi.fhemapi.server.FHEMServer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +73,76 @@ public class LCARSLivingRoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lcarslivingroom, container, false);
+        View view = inflater.inflate(R.layout.fragment_lcarslivingroom, container, false);
+        System.out.println("onCreateView");
+
+        Button btnLEDon= (Button) view.findViewById(R.id.button_LED_ON);
+        btnLEDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("on", "");
+                            final MessageResponse resp = s.setDevice("LED", params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+        Button btnLEDoff= (Button) view.findViewById(R.id.button_LED_OFF);
+        btnLEDoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("off", "");
+                            final MessageResponse resp = s.setDevice("LED", params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

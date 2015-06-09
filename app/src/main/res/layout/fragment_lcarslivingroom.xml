@@ -24,4 +24,22 @@
         android:indeterminateTint="@color/lcars_orange"
         android:backgroundTint="@color/lcars_orange_dark" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LED ON"
+        android:id="@+id/button_LED_ON"
+        android:layout_gravity="center_horizontal|top"
+        android:background="@drawable/lcars_button_lightpurple_right" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LED OFF"
+        android:id="@+id/button_LED_OFF"
+        android:layout_gravity="center"
+        android:background="@drawable/lcars_button_lightpurple_right" />
+
 </FrameLayout>

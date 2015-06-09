@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.bitcoder.homectrl.dummy.LCARSConfig;
 import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.server.FHEMServer;
@@ -21,9 +22,6 @@ import de.fzi.fhemapi.server.FHEMServer;
 public class LCARSBadFragment extends Fragment {
 
     String devName_Clima = "CUL_HM_HM_SEC_SC_2_2ADBA7"; // CUL_HM_HM_CC_RT_DN_2DD63F_WindowRec,
-
-    String serverIp = "192.168.178.27";
-    int serverPort = 7073;
 
     TextView textView_measuredTemp = null;
     TextView textView_desiredTemp = null;
@@ -74,7 +72,7 @@ public class LCARSBadFragment extends Fragment {
             public void run() {
                 try {
 
-                    FHEMServer s = new FHEMServer(serverIp, serverPort);
+                    FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
 
                     final DeviceResponse devHM_SEC = s.getDevice("CUL_HM_HM_SEC_SC_2_2ADBA7");
                     System.out.println("devHM_SEC: " + devHM_SEC.toString());

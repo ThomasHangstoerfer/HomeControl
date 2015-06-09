@@ -18,6 +18,11 @@
                 <enum name="left" value="0"/>
                 <enum name="right" value="1"/>
             </attr>
+            <attr name="chartType" format="enum">
+                <enum name="bars" value="0"/>
+                <enum name="levels" value="1"/>
+                <enum name="lines" value="2"/>
+            </attr>
             <attr name="labelWidth" format="dimension"/>
             <attr name="labelY" format="dimension"/>
             <attr name="pieRotation" format="integer"/>

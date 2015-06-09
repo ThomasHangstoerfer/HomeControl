@@ -72,18 +72,9 @@ public class StatisticsFragment extends Fragment {
         Resources res = getResources();
 
         final BarChart pie = (BarChart) view.findViewById(R.id.chart);
-        pie.setShowText(true);
-        pie.setTextPos(BarChart.TEXTPOS_RIGHT);
-        pie.setTextHeight(10);
+        pie.setChartType(0);
+        pie.setShowText(false);
 
-        /*
-        pie.addItem("Agamemnon", 2, res.getColor(R.color.seafoam));
-        pie.addItem("Bocephus", 3.5f, res.getColor(R.color.chartreuse));
-        pie.addItem("Calliope", 2.5f, res.getColor(R.color.emerald));
-        pie.addItem("Daedalus", 3, res.getColor(R.color.bluegrass));
-        pie.addItem("Euripides", 1, res.getColor(R.color.turquoise));
-        pie.addItem("Ganymede", 3, res.getColor(R.color.slate));
-        */
         pie.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
         for (int i = 0; i < 30; i++ )
         {
@@ -92,6 +83,34 @@ public class StatisticsFragment extends Fragment {
 
         }
         pie.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+
+
+        final BarChart levels = (BarChart) view.findViewById(R.id.chart2);
+        levels.setChartType(1);
+        levels.setShowText(false);
+
+        levels.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+        for (int i = 0; i < 30; i++ )
+        {
+            float randomNum = 10 + (int)(Math.random()*90);
+            levels.addItem("Ganymede", randomNum, res.getColor(i%2==0?R.color.lcars_green:R.color.lcars_green_dark));
+
+        }
+        levels.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+
+        final BarChart bars = (BarChart) view.findViewById(R.id.chart3);
+        bars.setChartType(2);
+        bars.setShowText(false);
+
+        bars.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+        for (int i = 0; i < 30; i++ )
+        {
+            float randomNum = 10 + (int)(Math.random()*90);
+            bars.addItem("Ganymede", randomNum, res.getColor(i%2==0?R.color.lcars_green:R.color.lcars_green_dark));
+
+        }
+        bars.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+
         return view;
     }
 

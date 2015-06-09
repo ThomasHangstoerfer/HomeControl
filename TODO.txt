@@ -12,6 +12,9 @@ HomeCtrl
 + Wohnzimmer: Color-Picker für LEDs, dazu 3 Vertical Sliders für RGB und einen Mode-Umschalter um zwischen
               verschiedenen Eingabemodi umzuschalten (Slider, Text, Farbkreis, Presets, etc)
               http://hoodaandroid.blogspot.in/2012/10/vertical-seek-bar-or-slider-in-android.html
++ Konfigurationen welche Devices / DeviceNamen in der App verwendet werden sollen, könnten als Attribute in FHEM direkt
+  gespeichert werden, dann braucht man in der App nur noch IP-Adresse und Port konfigurieren. Alles andere holt sich
+  die App dann aus den Attributen. 
 
 Fonts:
   datei nach assets/fonts/

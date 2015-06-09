@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.bitcoder.homectrl.R;
+import de.bitcoder.homectrl.dummy.LCARSConfig;
 import de.fzi.fhemapi.model.devicetypes.Device;
 import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.MessageResponse;
@@ -29,12 +30,8 @@ import de.fzi.fhemapi.server.FHEMServer;
 //public class PartyModeActivity extends ActionBarActivity {
 public class PartyModeActivity extends Activity {
 
-    String devName_Clima = "CUL_HM_HM_CC_RT_DN_2DD63F_Clima";
     Calendar c = Calendar.getInstance();
     double tempValue = 18.0;
-
-    String serverIp = "192.168.178.27";
-    int serverPort = 7073;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +75,11 @@ public class PartyModeActivity extends Activity {
                                     Integer.toString(c.get(Calendar.MINUTE));
                             System.out.println("param: " + param);
 
-                            FHEMServer s = new FHEMServer(serverIp, serverPort);
+                            FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
 
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("controlParty", param);
-                            final MessageResponse  resp = s.setDevice(devName_Clima, params);
+                            final MessageResponse  resp = s.setDevice(LCARSConfig.Bad_CC_RT_Clima, params);
 
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -114,11 +111,11 @@ public class PartyModeActivity extends Activity {
                             // set CUL_HM_HM_CC_RT_DN_2DD63F_Clima controlParty 19 31.01.15 9:30 31.01.15 16:00
                             String param = "19.0 21.08.07 10:00 30.07.10 10:00 ";
 
-                            FHEMServer s = new FHEMServer(serverIp, serverPort);
+                            FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
 
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("controlParty", param);
-                            final MessageResponse  resp = s.setDevice(devName_Clima, params);
+                            final MessageResponse  resp = s.setDevice(LCARSConfig.Bad_CC_RT_Clima, params);
 
                             runOnUiThread(new Runnable() {
                                 @Override
