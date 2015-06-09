@@ -26,7 +26,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LCARSMainActivity extends Activity
         implements StatisticsFragment.OnFragmentInteractionListener,
-                   LCARSSettingsFragment.OnFragmentInteractionListener {
+        LCARSSettingsFragment.OnFragmentInteractionListener,
+        LCARSLivingRoomFragment.OnFragmentInteractionListener
+{
 
         public void onFragmentInteraction(Uri uri)
         {
@@ -38,6 +40,7 @@ public class LCARSMainActivity extends Activity
     LCARSBadFragment mBadFragment = null;
     StatisticsFragment mStatisticsFragment = null;
     LCARSSettingsFragment mSettingsFragment = null;
+    LCARSLivingRoomFragment mLivingRoomFragment = null;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -79,7 +82,7 @@ public class LCARSMainActivity extends Activity
             }
         });
         Button btnBad = (Button) findViewById(R.id.button_bad);
-            btnBad.setOnClickListener(new View.OnClickListener() {
+        btnBad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ( mBadFragment == null ) {
@@ -92,6 +95,23 @@ public class LCARSMainActivity extends Activity
                         .commit();
             }
         });
+
+        Button btnLivRoom = (Button) findViewById(R.id.button_livingroom);
+            btnLivRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( mLivingRoomFragment == null ) {
+                    mLivingRoomFragment = new LCARSLivingRoomFragment();
+                }
+                getFragmentManager().beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_NONE)
+                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .replace(R.id.container, mLivingRoomFragment)
+                        .commit();
+            }
+        });
+
+
 
         Button btnStatistics = (Button) findViewById(R.id.button_statistics);
         btnStatistics.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,9 @@ HomeCtrl
   Evtl. beim Drücken den Button oder den Text einfärben (z.b. gelb) und dann beim Reply kurz grün oder rot schalten
 + LCARS-Buttons erweitern, dass die Textausrichtung automatisch gesetzt wird, je nach dem obs ein rechts/links/oben/unten Button ist
 + LCARS-Buttons zusammenfassen, so dass nicht für jede Richtung ein eigener Button sein muss
++ Wohnzimmer: Color-Picker für LEDs, dazu 3 Vertical Sliders für RGB und einen Mode-Umschalter um zwischen
+              verschiedenen Eingabemodi umzuschalten (Slider, Text, Farbkreis, Presets, etc)
+              http://hoodaandroid.blogspot.in/2012/10/vertical-seek-bar-or-slider-in-android.html
 
 Fonts:
   datei nach assets/fonts/
