@@ -13,8 +13,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.bitcoder.homectrl.R;
-import de.bitcoder.homectrl.dummy.LCARSConfig;
 import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.server.FHEMServer;
 

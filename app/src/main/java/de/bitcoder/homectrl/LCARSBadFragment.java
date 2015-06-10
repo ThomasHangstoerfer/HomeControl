@@ -6,22 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-
-import de.bitcoder.homectrl.dummy.LCARSConfig;
 import de.fzi.fhemapi.model.server.DeviceResponse;
-import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.server.FHEMServer;
 
 public class LCARSBadFragment extends Fragment {
-
-    String devName_Clima = "CUL_HM_HM_SEC_SC_2_2ADBA7"; // CUL_HM_HM_CC_RT_DN_2DD63F_WindowRec,
 
     TextView textView_measuredTemp = null;
     TextView textView_desiredTemp = null;
@@ -74,11 +64,11 @@ public class LCARSBadFragment extends Fragment {
 
                     FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
 
-                    final DeviceResponse devHM_SEC = s.getDevice("CUL_HM_HM_SEC_SC_2_2ADBA7");
+                    final DeviceResponse devHM_SEC = s.getDevice(LCARSConfig.Bad_Fenstersensor);
                     System.out.println("devHM_SEC: " + devHM_SEC.toString());
                     System.out.println("devHM_SEC.state: " + devHM_SEC.state);
 
-                    final DeviceResponse devClimate = s.getDevice("CUL_HM_HM_TC_IT_WM_W_EU_34B153_Climate");
+                    final DeviceResponse devClimate = s.getDevice(LCARSConfig.Bad_Thermostat_Climate);
                     System.out.println("devClimate: " + devClimate.toString());
                     System.out.println("devClimate.state: " + devClimate.state);
                     System.out.println("devClimate.lastState.desiredTemp:  " + devClimate.lastState.desiredTemp.val);

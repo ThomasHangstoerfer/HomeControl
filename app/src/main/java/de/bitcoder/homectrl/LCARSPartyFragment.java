@@ -2,25 +2,18 @@ package de.bitcoder.homectrl;
 
 
 import android.app.Fragment;
-import android.graphics.Typeface;
-import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.bitcoder.homectrl.dummy.LCARSConfig;
 import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.server.FHEMServer;
 

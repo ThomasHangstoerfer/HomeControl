@@ -79,7 +79,7 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     //FHEMServer s = new FHEMServer("127.0.0.1", 7073);
                     //FHEMServer s = new FHEMServer("192.168.178.49", 7073);
-                    FHEMServer s = new FHEMServer("192.168.178.27", 7073);
+                    FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
 
                     //List<DeviceResponse> devs = s.getAllDevices();
                     //for (DeviceResponse d : devs) {
@@ -146,14 +146,14 @@ public class MainActivity extends ActionBarActivity {
                     InetAddress Address = null;
                     try {
                         //Address = InetAddress.getByName("pi");
-                        Address = InetAddress.getByName("192.168.178.27");
+                        Address = InetAddress.getByName(LCARSConfig.serverIp);
 
                         System.out.println(Address);
                     } catch (UnknownHostException e) {
                         e.printStackTrace();
                     }
 
-                    Socket s = new Socket("192.168.178.27", 7072);
+                    Socket s = new Socket(LCARSConfig.serverIp, LCARSConfig.serverPort);
                     if ( !s.isConnected() )
                     {
                         System.out.println("Is not connected");

@@ -1,30 +1,18 @@
 package de.bitcoder.homectrl;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import de.bitcoder.homectrl.R;
-import de.bitcoder.homectrl.dummy.LCARSConfig;
-import de.fzi.fhemapi.model.devicetypes.Device;
-import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.MessageResponse;
-import de.fzi.fhemapi.server.DeviceManager;
 import de.fzi.fhemapi.server.FHEMServer;
 
 //public class PartyModeActivity extends ActionBarActivity {

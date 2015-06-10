@@ -30,7 +30,7 @@ public class FhemConnector {
             public void run() {
                 try {
 
-                    socket = new Socket("192.168.178.27", 7072);
+                    socket = new Socket(LCARSConfig.serverIp, LCARSConfig.serverPort);
                     if ( !socket.isConnected() )
                     {
                         System.out.println("Is not connected");
