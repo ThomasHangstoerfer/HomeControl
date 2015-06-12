@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import de.bitcoder.homectrl.LCARSConfig;
 import de.fzi.fhemapi.model.actuatorparameters.ActuatorParameters;
 import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.LogFileResponse;
@@ -54,6 +55,18 @@ public class FHEMServer {
 	private LogFileManager logFileManager;
 	private ScriptManager scriptManager;
 	private ConfigurationManager configManager;
+
+
+	private static FHEMServer fhemServer = null;
+
+	public static FHEMServer getInstance() throws  java.net.ConnectException
+	{
+		if ( fhemServer == null )
+		{
+			fhemServer = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
+		}
+		return fhemServer;
+	}
 
 	/**
 	 * default constructor

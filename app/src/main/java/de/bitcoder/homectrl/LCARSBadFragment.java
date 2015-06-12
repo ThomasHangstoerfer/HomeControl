@@ -62,13 +62,11 @@ public class LCARSBadFragment extends Fragment {
             public void run() {
                 try {
 
-                    FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
-
-                    final DeviceResponse devHM_SEC = s.getDevice(LCARSConfig.Bad_Fenstersensor);
+                    final DeviceResponse devHM_SEC = FHEMServer.getInstance().getDevice(LCARSConfig.Bad_Fenstersensor);
                     System.out.println("devHM_SEC: " + devHM_SEC.toString());
                     System.out.println("devHM_SEC.state: " + devHM_SEC.state);
 
-                    final DeviceResponse devClimate = s.getDevice(LCARSConfig.Bad_Thermostat_Climate);
+                    final DeviceResponse devClimate = FHEMServer.getInstance().getDevice(LCARSConfig.Bad_Thermostat_Climate);
                     System.out.println("devClimate: " + devClimate.toString());
                     System.out.println("devClimate.state: " + devClimate.state);
                     System.out.println("devClimate.lastState.desiredTemp:  " + devClimate.lastState.desiredTemp.val);

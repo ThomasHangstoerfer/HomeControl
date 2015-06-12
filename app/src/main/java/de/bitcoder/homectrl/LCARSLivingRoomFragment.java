@@ -85,11 +85,9 @@ public class LCARSLivingRoomFragment extends Fragment {
                     public void run() {
                         try {
 
-                            FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
-
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("on", "");
-                            final MessageResponse resp = s.setDevice("LED", params);
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LED, params);
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
@@ -118,11 +116,9 @@ public class LCARSLivingRoomFragment extends Fragment {
                     public void run() {
                         try {
 
-                            FHEMServer s = new FHEMServer(LCARSConfig.serverIp, LCARSConfig.serverPort);
-
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("off", "");
-                            final MessageResponse resp = s.setDevice("LED", params);
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LED, params);
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
@@ -140,6 +136,75 @@ public class LCARSLivingRoomFragment extends Fragment {
                 thread.start();
             } // onClick
         });
+
+
+
+        Button btnLampOn= (Button) view.findViewById(R.id.button_WzStehlampe_ON);
+        btnLampOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("on", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Stehlampe, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+        Button btnLampOff= (Button) view.findViewById(R.id.button_WzStehlampe_OFF);
+        btnLampOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("off", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice("WzStehlampe", params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+
+
+
+
         return view;
     }
 
