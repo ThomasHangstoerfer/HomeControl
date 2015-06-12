@@ -76,7 +76,7 @@ public class LCARSMainActivity extends Activity
                 }
                 getFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_NONE)
-                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mPartyFragment)
                         .commit();
             }
@@ -90,7 +90,7 @@ public class LCARSMainActivity extends Activity
                 }
                 getFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_NONE)
-                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mBadFragment)
                         .commit();
             }
@@ -105,7 +105,7 @@ public class LCARSMainActivity extends Activity
                 }
                 getFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_NONE)
-                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mLivingRoomFragment)
                         .commit();
             }
@@ -122,7 +122,7 @@ public class LCARSMainActivity extends Activity
                 }
                 getFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_NONE)
-                        .setCustomAnimations(R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mStatisticsFragment)
                         .commit();
             }
@@ -135,7 +135,7 @@ public class LCARSMainActivity extends Activity
                     mSettingsFragment = new LCARSSettingsFragment();
                 getFragmentManager().beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_NONE)
-                        .setCustomAnimations( R.anim.fadein_delay, R.anim.fadeout_delay/*, R.anim.fadein, R.anim.fadeout*/)
+                        .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mSettingsFragment)
                         .commit();
             }
