@@ -183,7 +183,70 @@ public class LCARSLivingRoomFragment extends Fragment {
 
                             Map<String, String> params = new HashMap<String, String>();
                             params.put("off", "");
-                            final MessageResponse resp = FHEMServer.getInstance().setDevice("WzStehlampe", params);
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Stehlampe, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+
+        Button btnBlindUp= (Button) view.findViewById(R.id.button_WzRolladenUp);
+        btnBlindUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("on", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+        Button btnBlindDown = (Button) view.findViewById(R.id.button_WzRolladenDown);
+        btnBlindDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("off", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
