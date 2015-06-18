@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="de.bitcoder.homectrl.LCARSLivingRoomFragment"
-    android:rowCount="3"
-    android:columnCount="4">
+    android:rowCount="4"
+    android:columnCount="5">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -13,33 +13,13 @@
         android:layout_columnSpan="3"
         android:layout_margin="30dp" />
 
-    <de.bitcoder.homectrl.VerticalSlider
-
-        android:id="@+id/verticalSeekbar"
-        android:max="255"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:progress="0"
-        android:progressBackgroundTint="@color/lcars_orange"
-        android:secondaryProgressTint="@color/lcars_orange_dark"
-        android:thumbTint="@color/lcars_orange"
-        android:indeterminateTint="@color/lcars_orange"
-        android:backgroundTint="@color/lcars_orange_dark"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:layout_rowSpan="2" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LED ON"
+        android:text="LED\nON"
         android:id="@+id/button_LED_ON"
-        android:background="@drawable/lcars_button_lightpurple_right"
+        android:background="@drawable/lcars_button_lightpurple_up"
         android:layout_row="1"
         android:layout_column="1"
         android:layout_margin="30dp" />
@@ -48,10 +28,10 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LED OFF"
+        android:text="LED\nOFF"
         android:id="@+id/button_LED_OFF"
-        android:background="@drawable/lcars_button_lightpurple_right"
-        android:layout_row="2"
+        android:background="@drawable/lcars_button_lightpurple_down"
+        android:layout_row="3"
         android:layout_column="1"
         android:layout_margin="30dp" />
 
@@ -59,9 +39,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LAMP ON"
+        android:text="LAMP\nON"
         android:id="@+id/button_WzStehlampe_ON"
-        android:background="@drawable/lcars_button_blue_right"
+        android:background="@drawable/lcars_button_blue_up"
         android:layout_row="1"
         android:layout_column="2"
         android:layout_margin="30dp" />
@@ -70,10 +50,10 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LAMP OFF"
+        android:text="LAMP\nOFF"
         android:id="@+id/button_WzStehlampe_OFF"
-        android:background="@drawable/lcars_button_blue_right"
-        android:layout_row="2"
+        android:background="@drawable/lcars_button_blue_down"
+        android:layout_row="3"
         android:layout_column="2"
         android:layout_margin="30dp" />
 
@@ -88,6 +68,31 @@
         android:layout_column="3"
         android:layout_margin="30dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/textLCARS_large"
+        android:text="20%"
+        android:id="@+id/textView_WzRolladenValue"
+        android:layout_column="3"
+        android:layout_row="2"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center"
+        android:textColor="@color/lcars_orange"
+        android:textSize="40dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BLIND\nSTOP"
+        android:id="@+id/button_WzRolladenStop"
+        android:background="@drawable/lcars_button_orange_right"
+        android:layout_row="2"
+        android:layout_column="4"
+        android:layout_margin="30dp" />
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -95,7 +100,7 @@
         android:text="BLIND\nDOWN"
         android:id="@+id/button_WzRolladenDown"
         android:background="@drawable/lcars_button_orange_down"
-        android:layout_row="2"
+        android:layout_row="3"
         android:layout_column="3"
         android:layout_margin="30dp" />
 

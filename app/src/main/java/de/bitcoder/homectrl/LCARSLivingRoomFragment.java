@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.server.FHEMServer;
 
@@ -35,6 +37,8 @@ public class LCARSLivingRoomFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    TextView textViewBlindValue = null;
 
     /**
      * Use this factory method to create a new instance of
@@ -73,6 +77,11 @@ public class LCARSLivingRoomFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lcarslivingroom, container, false);
         System.out.println("onCreateView");
+
+
+
+        textViewBlindValue = (TextView) view.findViewById(R.id.textView_WzRolladenValue);
+
 
         Button btnLEDon= (Button) view.findViewById(R.id.button_LED_ON);
         btnLEDon.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +211,7 @@ public class LCARSLivingRoomFragment extends Fragment {
             } // onClick
         });
 
-        Button btnBlindUp= (Button) view.findViewById(R.id.button_WzRolladenUp);
+        Button btnBlindUp = (Button) view.findViewById(R.id.button_WzRolladenUp);
         btnBlindUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +223,7 @@ public class LCARSLivingRoomFragment extends Fragment {
                         try {
 
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("on", "");
+                            params.put("off", "");
                             final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
 
                             getActivity().runOnUiThread(new Runnable() {
@@ -245,7 +254,38 @@ public class LCARSLivingRoomFragment extends Fragment {
                         try {
 
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("off", "");
+                            params.put("on", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+        Button btnBlindStop = (Button) view.findViewById(R.id.button_WzRolladenStop);
+        btnBlindStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("stop", "");
                             final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
 
                             getActivity().runOnUiThread(new Runnable() {
@@ -265,10 +305,47 @@ public class LCARSLivingRoomFragment extends Fragment {
             } // onClick
         });
 
-
-
-
         return view;
+    }
+
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        System.out.println("onViewStateRestored");
+
+/*
+        Thread thread = new Thread(new Runnable() {
+            private String result;
+
+            @Override
+            public void run() {
+                try {
+
+                    System.out.println("devWzBlind!!!!!!! ");
+//                    final DeviceResponse devWzBlind = FHEMServer.getInstance().getDevice(LCARSConfig.WZ_Rolladen);
+//                    System.out.println("devWzBlind: " + devWzBlind.toString());
+//                    System.out.println("devWzBlind.state: " + devWzBlind.state);
+                    //System.out.println("devWzBlind.lastState.battery:      " + devWzBlind.lastState.battery.val);
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            //textViewBlindValue.setText(devWzBlind.lastState.measuredTemp.val + "°");
+                            textViewBlindValue.setText("11%");
+
+                            //Toast.makeText(getActivity().getApplicationContext(), devHM_SEC.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                } catch (java.net.ConnectException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+*/
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -20,14 +20,14 @@
                 <shape xmlns:android="http://schemas.android.com/apk/res/android"
                     android:shape="oval" >
                     <size  android:height="50dp" android:width="50dp" />
-                    <solid android:color="@color/lcars_lightpurple_dark" />
+                    <solid android:color="@color/lcars_orange_dark" />
                 </shape>
             </item>
-            <item android:right="25dp">
+            <item android:left="25dp">
                 <shape xmlns:android="http://schemas.android.com/apk/res/android"
                     android:shape="rectangle" >
                     <size  android:height="25dp" android:width="25dp" />
-                    <solid android:color="@color/lcars_lightpurple_dark" />
+                    <solid android:color="@color/lcars_orange_dark" />
                 </shape>
             </item>
 
@@ -39,33 +39,14 @@
                 <shape xmlns:android="http://schemas.android.com/apk/res/android"
                     android:shape="oval" >
                     <size  android:height="50dp" android:width="50dp" />
-                    <solid android:color="@color/lcars_lightpurple" />
+                    <solid android:color="@color/lcars_orange" />
                 </shape>
             </item>
-            <item android:right="25dp">
+            <item android:left="25dp">
                 <shape xmlns:android="http://schemas.android.com/apk/res/android"
                     android:shape="rectangle" >
                     <size  android:height="25dp" android:width="25dp" />
-                    <solid android:color="@color/lcars_lightpurple" />
-                </shape>
-            </item>
-
-        </layer-list>
-    </item>
-    <item android:state_hovered="true" >
-        <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-            <item>
-                <shape xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:shape="oval" >
-                    <size  android:height="50dp" android:width="50dp" />
-                    <solid android:color="@color/lcars_green" />
-                </shape>
-            </item>
-            <item android:right="25dp">
-                <shape xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:shape="rectangle" >
-                    <size  android:height="25dp" android:width="25dp" />
-                    <solid android:color="@color/lcars_green_dark" />
+                    <solid android:color="@color/lcars_orange" />
                 </shape>
             </item>
 

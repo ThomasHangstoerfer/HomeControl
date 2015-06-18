@@ -254,7 +254,7 @@
         android:padding="2dp"
         android:layout_gravity="top" />
 
-    <Button
+    <de.bitcoder.homectrl.LCARSButton
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:text="Set"

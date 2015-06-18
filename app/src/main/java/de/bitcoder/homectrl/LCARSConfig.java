@@ -18,6 +18,6 @@ public class LCARSConfig {
 
     public static final String WZ_Stehlampe = "WzStehlampe";
     public static final String WZ_LED       = "LED";
-    public static final String WZ_Rolladen  = "WZ_Rolladen";
+    public static final String WZ_Rolladen  = "WzRolladen";
 
 }

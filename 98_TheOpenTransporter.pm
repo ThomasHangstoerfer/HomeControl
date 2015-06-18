@@ -934,6 +934,9 @@ sub TheOpenTransporter_FntGetDevice($$)
 	$sendHash{ATTRIBUTES} = getAllAttr($device);
 	$sendHash{SETS}   = getAllSets($device);
 	$sendHash{EATTR}   = $attr{$device};
+
+	# Log 2, "$hash->{NAME} on port $hash->{PORT} opened! (Version: $hash->{VERSION})";
+
 	$fntHash->{"Content"} = JSON->new->allow_nonref->allow_blessed->utf8->encode(\%sendHash);
 	return undef;
 }

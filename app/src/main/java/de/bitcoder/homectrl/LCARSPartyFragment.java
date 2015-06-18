@@ -39,7 +39,7 @@ public class LCARSPartyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lcars_party, container, false);
         System.out.println("onCreateView");
 
-        Button btnSetPartyMode = (Button) view.findViewById(R.id.button_set);
+        final LCARSButton btnSetPartyMode = (LCARSButton) view.findViewById(R.id.button_set);
         btnSetPartyMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +66,7 @@ public class LCARSPartyFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //btnSetPartyMode.showResult( resp.isTrue() );
+                                    btnSetPartyMode.showResult( resp.isTrue() );
                                     Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
                                             Toast.LENGTH_LONG).show();
                                 }
