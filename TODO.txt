@@ -31,4 +31,6 @@ Button-Shape-Generator
 
 Diagramm:
   http://developer.android.com/training/custom-views/index.html
- 
+
+LED-Stripes:
+  http://www.meintechblog.de/2015/04/die-beste-alternative-zu-hue-in-wenigen-schritten-zum-individuellen-lichtszenario/ 
