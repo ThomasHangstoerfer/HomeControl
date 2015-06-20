@@ -1,17 +1,11 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context="de.bitcoder.homectrl.LCARSLivingRoomFragment"
-    android:rowCount="4"
-    android:columnCount="5">
+    android:rowCount="5"
+    android:columnCount="7">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_columnSpan="3"
-        android:layout_margin="30dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -20,9 +14,35 @@
         android:text="LED\nON"
         android:id="@+id/button_LED_ON"
         android:background="@drawable/lcars_button_lightpurple_up"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_margin="30dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-\nRED"
+        android:id="@+id/button_LED_RED_DOWN"
+        android:background="@drawable/lcars_button_orange_left"
         android:layout_row="1"
         android:layout_column="1"
-        android:layout_margin="30dp" />
+        android:layout_margin="30dp"
+        android:textAlignment="gravity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/textLCARS_large"
+        android:text="20%"
+        android:id="@+id/textView_LED_RED"
+        android:layout_column="2"
+        android:layout_row="1"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center"
+        android:textColor="@color/lcars_orange"
+        android:textSize="40dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -31,9 +51,97 @@
         android:text="LED\nOFF"
         android:id="@+id/button_LED_OFF"
         android:background="@drawable/lcars_button_lightpurple_down"
+        android:layout_row="4"
+        android:layout_column="2"
+        android:layout_margin="30dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+\nRED"
+        android:id="@+id/button_LED_RED_UP"
+        android:background="@drawable/lcars_button_orange_right"
+        android:layout_row="1"
+        android:layout_column="3"
+        android:layout_margin="30dp"
+        android:textAlignment="gravity" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-\nGREEN"
+        android:id="@+id/button_LED_GREEN_DOWN"
+        android:background="@drawable/lcars_button_lightpurple_left"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_margin="30dp"
+        android:textAlignment="gravity" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+\nGREEN"
+        android:id="@+id/button_LED_GREEN_UP"
+        android:background="@drawable/lcars_button_lightpurple_right"
+        android:layout_row="2"
+        android:layout_column="3"
+        android:layout_margin="30dp"
+        android:textAlignment="gravity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/textLCARS_large"
+        android:text="20%"
+        android:id="@+id/textView_LED_GREEN"
+        android:layout_column="2"
+        android:layout_row="2"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center"
+        android:textColor="@color/lcars_lightpurple"
+        android:textSize="40dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-\nBLUE"
+        android:id="@+id/button_LED_BLUE_DOWN"
+        android:background="@drawable/lcars_button_blue_left"
         android:layout_row="3"
         android:layout_column="1"
-        android:layout_margin="30dp" />
+        android:layout_margin="30dp"
+        android:textAlignment="gravity" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+\nBLUE"
+        android:id="@+id/button_LED_BLUE_UP"
+        android:background="@drawable/lcars_button_blue_right"
+        android:layout_row="3"
+        android:layout_column="3"
+        android:layout_margin="30dp"
+        android:textAlignment="gravity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/textLCARS_large"
+        android:text="20%"
+        android:id="@+id/textView_LED_BLUE"
+        android:layout_column="2"
+        android:layout_row="3"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center"
+        android:textColor="@color/lcars_blue"
+        android:textSize="40dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -43,7 +151,7 @@
         android:id="@+id/button_WzStehlampe_ON"
         android:background="@drawable/lcars_button_blue_up"
         android:layout_row="1"
-        android:layout_column="2"
+        android:layout_column="4"
         android:layout_margin="30dp" />
 
     <Button
@@ -54,7 +162,7 @@
         android:id="@+id/button_WzStehlampe_OFF"
         android:background="@drawable/lcars_button_blue_down"
         android:layout_row="3"
-        android:layout_column="2"
+        android:layout_column="4"
         android:layout_margin="30dp" />
 
     <Button
@@ -65,7 +173,7 @@
         android:id="@+id/button_WzRolladenUp"
         android:background="@drawable/lcars_button_orange_up"
         android:layout_row="1"
-        android:layout_column="3"
+        android:layout_column="5"
         android:layout_margin="30dp" />
 
     <TextView
@@ -74,7 +182,7 @@
         android:textAppearance="@style/textLCARS_large"
         android:text="20%"
         android:id="@+id/textView_WzRolladenValue"
-        android:layout_column="3"
+        android:layout_column="5"
         android:layout_row="2"
         android:textAlignment="gravity"
         android:gravity="center_vertical|center_horizontal"
@@ -90,7 +198,7 @@
         android:id="@+id/button_WzRolladenStop"
         android:background="@drawable/lcars_button_orange_right"
         android:layout_row="2"
-        android:layout_column="4"
+        android:layout_column="6"
         android:layout_margin="30dp" />
 
     <Button
@@ -101,7 +209,7 @@
         android:id="@+id/button_WzRolladenDown"
         android:background="@drawable/lcars_button_orange_down"
         android:layout_row="3"
-        android:layout_column="3"
+        android:layout_column="5"
         android:layout_margin="30dp" />
 
 </GridLayout>

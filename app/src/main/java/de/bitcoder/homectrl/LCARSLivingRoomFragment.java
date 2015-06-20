@@ -1,6 +1,7 @@
 package de.bitcoder.homectrl;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -38,8 +39,16 @@ public class LCARSLivingRoomFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    TextView textViewBlindValue = null;
+    private TextView textViewBlindValue = null;
+    private TextView textViewLEDRed = null;
+    private TextView textViewLEDGreen = null;
+    private TextView textViewLEDBlue = null;
 
+    private int red = 0;
+    private int green = 0;
+    private int blue = 0;
+
+    private int LEDclickStep = 5;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -78,9 +87,11 @@ public class LCARSLivingRoomFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lcarslivingroom, container, false);
         System.out.println("onCreateView");
 
-
-
         textViewBlindValue = (TextView) view.findViewById(R.id.textView_WzRolladenValue);
+        textViewLEDRed = (TextView) view.findViewById(R.id.textView_LED_RED);
+        textViewLEDGreen = (TextView) view.findViewById(R.id.textView_LED_GREEN);
+        textViewLEDBlue = (TextView) view.findViewById(R.id.textView_LED_BLUE);
+
 
 
         Button btnLEDon= (Button) view.findViewById(R.id.button_LED_ON);
@@ -304,10 +315,106 @@ public class LCARSLivingRoomFragment extends Fragment {
                 thread.start();
             } // onClick
         });
+        Button btnRedUp = (Button) view.findViewById(R.id.button_LED_RED_UP);
+        btnRedUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                red = Math.min(100, red + LEDclickStep);
+                updateLEDValues();
+                sendColor();
+            } // onClick
+        });
+        Button btnRedDown = (Button) view.findViewById(R.id.button_LED_RED_DOWN);
+        btnRedDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                red = Math.max(0, red - LEDclickStep);
+                updateLEDValues();
+                sendColor();
+            } // onClick
+        });
+        Button btnGreenUp = (Button) view.findViewById(R.id.button_LED_GREEN_UP);
+        btnGreenUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                green = Math.min(100, green + LEDclickStep);
+                updateLEDValues();
+                sendColor();
+            } // onClick
+        });
+        Button btnGreenDown = (Button) view.findViewById(R.id.button_LED_GREEN_DOWN);
+        btnGreenDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                green = Math.max(0, green - LEDclickStep);
+                updateLEDValues();
+                sendColor();
+            } // onClick
+        });
+
+        Button btnBlueUp = (Button) view.findViewById(R.id.button_LED_BLUE_UP);
+        btnBlueUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                blue = Math.min(100, blue + LEDclickStep);
+                updateLEDValues();
+                sendColor();
+            } // onClick
+        });
+        Button btnBlueDown = (Button) view.findViewById(R.id.button_LED_BLUE_DOWN);
+        btnBlueDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                blue = Math.max(0, blue - LEDclickStep);
+                updateLEDValues();
+                sendColor();
+            } // onClick
+        });
+
+        updateLEDValues();
 
         return view;
     }
 
+    private void updateLEDValues()
+    {
+        textViewLEDRed.setText(red + "%");
+        textViewLEDGreen.setText(green + "%");
+        textViewLEDBlue.setText(blue + "%");
+    }
+
+    private void sendColor()
+    {
+        final String hex = String.format("%02X%02X%02X", red*0xFF/100, green*0xFF/100, blue*0xFF/100);
+        //System.out.println("red = " + red + " green = " + green + " blue = " + blue + " => hex = " + hex);
+
+        Thread thread = new Thread(new Runnable() {
+            private String result;
+
+            @Override
+            public void run() {
+                try {
+
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("RGB", hex);
+                    final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LED, params);
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                } catch (java.net.ConnectException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+    }
 
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
