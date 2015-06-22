@@ -62,7 +62,8 @@ public class LCARSMainActivity extends Activity
         setContentView(R.layout.activity_lcarsmain);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new LCARSPartyFragment())
+                    /*.add(R.id.container, new LCARSPartyFragment()*/
+                    .add(R.id.container, new LCARSLivingRoomFragment())
                     .commit();
         }
 

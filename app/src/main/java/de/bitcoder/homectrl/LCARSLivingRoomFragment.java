@@ -1,10 +1,12 @@
 package de.bitcoder.homectrl;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +71,8 @@ public class LCARSLivingRoomFragment extends Fragment {
 
     public LCARSLivingRoomFragment() {
         // Required empty public constructor
+        //System.out.println("CONSTRUCTOR!");
+
     }
 
     @Override
@@ -78,6 +82,13 @@ public class LCARSLivingRoomFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        red = preferences.getInt("LEDColorRed", 0);
+        green = preferences.getInt("LEDColorGreen", 0);
+        blue = preferences.getInt("LEDColorBlue", 0);
+
+        System.out.println("Saved values: red = " + red + " green = " + green + " blue = " + blue);
     }
 
     @Override
@@ -98,31 +109,9 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnLEDon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Thread thread = new Thread(new Runnable() {
-                    private String result;
 
-                    @Override
-                    public void run() {
-                        try {
+                sendColor(); // use saved color
 
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("on", "");
-                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LED, params);
-
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            });
-
-                        } catch (java.net.ConnectException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                });
-                thread.start();
             } // onClick
         });
         Button btnLEDoff= (Button) view.findViewById(R.id.button_LED_OFF);
@@ -234,7 +223,7 @@ public class LCARSLivingRoomFragment extends Fragment {
                         try {
 
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("off", "");
+                            params.put("on", "");
                             final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
 
                             getActivity().runOnUiThread(new Runnable() {
@@ -265,7 +254,7 @@ public class LCARSLivingRoomFragment extends Fragment {
                         try {
 
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("on", "");
+                            params.put("off", "");
                             final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Rolladen, params);
 
                             getActivity().runOnUiThread(new Runnable() {
@@ -381,6 +370,13 @@ public class LCARSLivingRoomFragment extends Fragment {
         textViewLEDRed.setText(red + "%");
         textViewLEDGreen.setText(green + "%");
         textViewLEDBlue.setText(blue + "%");
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("LEDColorRed", red);
+        editor.putInt("LEDColorGreen", green);
+        editor.putInt("LEDColorBlue", blue);
+        editor.commit();
     }
 
     private void sendColor()
@@ -398,14 +394,13 @@ public class LCARSLivingRoomFragment extends Fragment {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("RGB", hex);
                     final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LED, params);
-
+                    /*
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), resp.toString(), Toast.LENGTH_LONG).show();
                         }
-                    });
+                    });*/
 
                 } catch (java.net.ConnectException ex) {
                     ex.printStackTrace();
