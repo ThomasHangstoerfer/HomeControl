@@ -27,6 +27,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class LCARSMainActivity extends Activity
         implements StatisticsFragment.OnFragmentInteractionListener,
         LCARSSettingsFragment.OnFragmentInteractionListener,
+        LCARSWeatherFragment.OnFragmentInteractionListener,
         LCARSLivingRoomFragment.OnFragmentInteractionListener
 {
 
@@ -41,6 +42,7 @@ public class LCARSMainActivity extends Activity
     StatisticsFragment mStatisticsFragment = null;
     LCARSSettingsFragment mSettingsFragment = null;
     LCARSLivingRoomFragment mLivingRoomFragment = null;
+    LCARSWeatherFragment mWeatherFragment = null;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -141,6 +143,20 @@ public class LCARSMainActivity extends Activity
                         .commit();
             }
         });
+
+        Button btnWeather = (Button) findViewById(R.id.button_weather);
+            btnWeather.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mWeatherFragment == null)
+                        mWeatherFragment = new LCARSWeatherFragment();
+                    getFragmentManager().beginTransaction()
+                            .setTransition(FragmentTransaction.TRANSIT_NONE)
+                            .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
+                            .replace(R.id.container, mWeatherFragment)
+                            .commit();
+                }
+            });
         Button btnDev = (Button) findViewById(R.id.button_dev);
         btnDev.setOnClickListener(new View.OnClickListener() {
             @Override

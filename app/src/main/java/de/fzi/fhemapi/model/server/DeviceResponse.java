@@ -38,7 +38,7 @@ public class DeviceResponse extends ResponseObject {
 	public String name;
 	@SerializedName("DEF")
 	public String def;
-	
+
 	@SerializedName("READINGS")
 	public Reading lastState;
 	@SerializedName("TYPE")

@@ -20,4 +20,5 @@ public class LCARSConfig {
     public static final String WZ_LED       = "LED";
     public static final String WZ_Rolladen  = "WzRolladen";
 
+    public static final String Wetter = "Wetter";
 }

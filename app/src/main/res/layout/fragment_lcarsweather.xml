@@ -1,0 +1,101 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="de.bitcoder.homectrl.LCARSSettingsFragment"
+    android:background="#FF000000">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:columnCount="5"
+        android:rowCount="5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mo."
+            android:id="@+id/textView_fc1_day"
+            android:layout_gravity="left|top"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_row="0"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Di."
+            android:id="@+id/textView_fc2_day"
+            android:layout_gravity="left|top"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_row="0"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mi."
+            android:id="@+id/textView_fc3_day"
+            android:layout_gravity="left|top"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="2"
+            android:layout_columnSpan="1"
+            android:layout_row="0"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Do."
+            android:id="@+id/textView_fc4_day"
+            android:layout_gravity="left|top"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="3"
+            android:layout_columnSpan="1"
+            android:layout_row="0"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_fc1_icon"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:src="@drawable/homectrl" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_fc2_icon"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:src="@drawable/homectrl" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_fc3_icon"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:src="@drawable/homectrl" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_fc4_icon"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:src="@drawable/homectrl" />
+
+    </GridLayout>
+
+</FrameLayout>

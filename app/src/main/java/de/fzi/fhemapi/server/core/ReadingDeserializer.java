@@ -26,7 +26,7 @@ public class ReadingDeserializer implements JsonDeserializer<Reading> {
             reading.readings = new HashMap<String, Object>();
             for(Map.Entry<String, JsonElement> entry : jsonStr.getAsJsonObject().entrySet()) {
                 System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
-                reading.readings.put(entry.getKey(), context.deserialize(entry.getValue(), Object.class));
+                reading.readings.put(entry.getKey(), context.deserialize(entry.getValue(), State.class));
 
                 if ( entry.getKey().equals( "state" ) ) {
                     reading.state = (State) context.deserialize(entry.getValue(), State.class);
