@@ -2,6 +2,8 @@ package de.fzi.fhemapi.model.server.subelements;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 public class Reading {
 
 	@SerializedName("state")
@@ -22,5 +24,6 @@ public class Reading {
 	@SerializedName("battery")
 	public State battery;
 
+	public Map<String, Object> readings = null;
 
 }

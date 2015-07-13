@@ -45,8 +45,10 @@ import com.google.gson.reflect.TypeToken;
 import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.model.server.ResponseObject;
+import de.fzi.fhemapi.model.server.subelements.Reading;
 import de.fzi.fhemapi.server.constants.MethodNames;
 import de.fzi.fhemapi.server.core.ContentParamDeserializer;
+import de.fzi.fhemapi.server.core.ReadingDeserializer;
 
 /**
  * This class represents a connection between java and the fhem server. Here are all the methods which are offered by the "TheOpenTransporter"-API.
@@ -330,7 +332,14 @@ public class FHEMConnection {
 			{
 				System.out.println("jsonObject: " + jsonObject);
 			}
-			return new Gson().fromJson(jsonObject, DeviceResponse.class);
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			gsonBuilder.registerTypeAdapter(Reading.class, new ReadingDeserializer());
+			Gson gson = gsonBuilder.create();
+
+			// TODO hier sollte clazz anstelle von DeviceResponse.class verwendet werden
+			// sonst funktioniert das nur fuer DeviceResponses
+			return gson.fromJson(jsonObject, DeviceResponse.class);
+			//return new Gson().fromJson(jsonObject, DeviceResponse.class);
 //            return new Gson().fromJson(jsonObject, clazz);
 
             //return new ResponseObject();
