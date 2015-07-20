@@ -936,6 +936,10 @@ sub TheOpenTransporter_FntGetDevice($$)
 	$sendHash{EATTR}   = $attr{$device};
 
 	# Log 2, "$hash->{NAME} on port $hash->{PORT} opened! (Version: $hash->{VERSION})";
+	print map { "$_: $sendHash{$_}\n" } keys %sendHash;
+	my $debug = map { "$_: $sendHash{$_}\n" } keys %sendHash;
+	TheOpenTransporter_Log($hash, 1, "\nsendHash: \n" . $debug . "\n\n");
+
 
 	$fntHash->{"Content"} = JSON->new->allow_nonref->allow_blessed->utf8->encode(\%sendHash);
 	return undef;
