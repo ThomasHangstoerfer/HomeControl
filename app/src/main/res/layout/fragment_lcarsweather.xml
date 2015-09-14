@@ -1,14 +1,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="de.bitcoder.homectrl.LCARSSettingsFragment"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" tools:context="de.bitcoder.homectrl.LCARSSettingsFragment"
     android:background="#FF000000">
 
     <!-- TODO: Update blank fragment layout -->
 
     <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|center_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
         android:columnCount="5"
         android:rowCount="5">
 
@@ -18,12 +18,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Mo."
             android:id="@+id/textView_fc1_day"
-            android:layout_gravity="left|top"
             android:textColor="@color/lcars_orange"
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:layout_row="0"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,12 +31,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Di."
             android:id="@+id/textView_fc2_day"
-            android:layout_gravity="left|top"
             android:textColor="@color/lcars_orange"
             android:layout_column="1"
             android:layout_columnSpan="1"
             android:layout_row="0"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,12 +44,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Mi."
             android:id="@+id/textView_fc3_day"
-            android:layout_gravity="left|top"
             android:textColor="@color/lcars_orange"
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:layout_row="0"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,12 +57,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Do."
             android:id="@+id/textView_fc4_day"
-            android:layout_gravity="left|top"
             android:textColor="@color/lcars_orange"
             android:layout_column="3"
             android:layout_columnSpan="1"
             android:layout_row="0"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_gravity="center" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -70,7 +70,8 @@
             android:id="@+id/imageView_fc1_icon"
             android:layout_row="1"
             android:layout_column="0"
-            android:src="@drawable/homectrl" />
+            android:src="@drawable/homectrl"
+            android:layout_margin="20dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
             android:id="@+id/imageView_fc2_icon"
             android:layout_row="1"
             android:layout_column="1"
-            android:src="@drawable/homectrl" />
+            android:src="@drawable/homectrl"
+            android:layout_margin="20dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -86,7 +88,8 @@
             android:id="@+id/imageView_fc3_icon"
             android:layout_row="1"
             android:layout_column="2"
-            android:src="@drawable/homectrl" />
+            android:src="@drawable/homectrl"
+            android:layout_margin="20dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -94,7 +97,124 @@
             android:id="@+id/imageView_fc4_icon"
             android:layout_row="1"
             android:layout_column="3"
-            android:src="@drawable/homectrl" />
+            android:src="@drawable/homectrl"
+            android:layout_margin="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="heiter"
+            android:id="@+id/textView_f1_cond"
+            android:layout_gravity="center"
+            android:textColor="@color/lcars_lightpurple"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_row="2"
+            android:textSize="15dp"
+            android:textAlignment="gravity"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="heiter"
+            android:id="@+id/textView_f2_cond"
+            android:layout_gravity="center"
+            android:textColor="@color/lcars_lightpurple"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_row="2"
+            android:textSize="15dp"
+            android:textAlignment="gravity"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="heiter"
+            android:id="@+id/textView_f3_cond"
+            android:layout_gravity="center"
+            android:textColor="@color/lcars_lightpurple"
+            android:layout_column="2"
+            android:layout_columnSpan="1"
+            android:layout_row="2"
+            android:textSize="15dp"
+            android:textAlignment="gravity"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="heiter"
+            android:id="@+id/textView_f4_cond"
+            android:layout_gravity="center"
+            android:textColor="@color/lcars_lightpurple"
+            android:layout_column="3"
+            android:layout_columnSpan="1"
+            android:layout_row="2"
+            android:textSize="15dp"
+            android:textAlignment="gravity"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="10° / 20°"
+            android:id="@+id/textView_fc1_temp"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_row="3"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="10° / 20°"
+            android:id="@+id/textView_fc2_temp"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_row="3"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="10° / 20°"
+            android:id="@+id/textView_fc3_temp"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="2"
+            android:layout_columnSpan="1"
+            android:layout_row="3"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="10° / 20°"
+            android:id="@+id/textView_fc4_temp"
+            android:textColor="@color/lcars_orange"
+            android:layout_column="3"
+            android:layout_columnSpan="1"
+            android:layout_row="3"
+            android:textSize="15dp"
+            android:textAlignment="center"
+            android:layout_gravity="center" />
 
     </GridLayout>
 
