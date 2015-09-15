@@ -27,6 +27,8 @@ import com.google.gson.annotations.SerializedName;
 
 import de.fzi.fhemapi.model.server.subelements.EAttributes;
 import de.fzi.fhemapi.model.server.subelements.Reading;
+import de.fzi.fhemapi.model.server.subelements.fhem;
+
 /**
  * This class represents the response from the server to a device request
  * @author Can
@@ -60,6 +62,8 @@ public class DeviceResponse extends ResponseObject {
     @SerializedName("device")
     public String device;
 
+	@SerializedName("fhem")
+	public fhem fhemElement;
 
 	/**
 	 * Default constructor
