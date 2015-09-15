@@ -915,7 +915,7 @@ public class BarChart extends ViewGroup {
                     float height = it.mValue * mBounds.height() / mMaxVal;
                     float bottom = getChartType() == 0 ? baseline : baseline - height + 20; //  bars or levels
 
-                    System.out.println("height = " + height + " mMaxVal = " + mMaxVal + " it.mValue = " + it.mValue + " mBounds.height() = " + mBounds.height());
+                    //System.out.println("height = " + height + " mMaxVal = " + mMaxVal + " it.mValue = " + it.mValue + " mBounds.height() = " + mBounds.height());
                     //int randomNum = 30 + (int)(Math.random()*baseline);
                     canvas.drawRect(left, baseline - height, left + barWidth - 10, bottom, mPiePaint);
                     i++;

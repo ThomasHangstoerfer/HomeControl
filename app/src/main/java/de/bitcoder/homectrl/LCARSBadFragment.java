@@ -68,25 +68,29 @@ public class LCARSBadFragment extends Fragment {
 
                     final DeviceResponse devClimate = FHEMServer.getInstance().getDevice(LCARSConfig.Bad_Thermostat_Climate);
                     System.out.println("devClimate: " + devClimate.toString());
-                    System.out.println("devClimate.state: " + devClimate.state);
-                    System.out.println("devClimate.lastState.desiredTemp:  " + devClimate.lastState.desiredTemp.val);
-                    System.out.println("devClimate.lastState.measuredTemp: " + devClimate.lastState.measuredTemp.val);
-                    System.out.println("devClimate.lastState.humidity:     " + devClimate.lastState.humidity.val);
-                    System.out.println("devClimate.lastState.battery:      " + devClimate.lastState.battery.val);
+                    if ( !devClimate.type.equals("Error") )
+                    {
 
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                        System.out.println("devClimate.state: " + devClimate.state);
+                        System.out.println("devClimate.lastState.desiredTemp:  " + devClimate.lastState.desiredTemp.val);
+                        System.out.println("devClimate.lastState.measuredTemp: " + devClimate.lastState.measuredTemp.val);
+                        System.out.println("devClimate.lastState.humidity:     " + devClimate.lastState.humidity.val);
+                        System.out.println("devClimate.lastState.battery:      " + devClimate.lastState.battery.val);
 
-                            textView_measuredTemp.setText(devClimate.lastState.measuredTemp.val+"°");
-                            textView_desiredTemp.setText(devClimate.lastState.desiredTemp.val+"°");
-                            textView_humidity.setText(devClimate.lastState.humidity.val+"%");
-                            textView_battery.setText(devClimate.lastState.battery.val);
-                            textView_window.setText(devHM_SEC.state);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
-                            //Toast.makeText(getActivity().getApplicationContext(), devHM_SEC.toString(), Toast.LENGTH_LONG).show();
-                        }
-                    });
+                                textView_measuredTemp.setText(devClimate.lastState.measuredTemp.val+"°");
+                                textView_desiredTemp.setText(devClimate.lastState.desiredTemp.val+"°");
+                                textView_humidity.setText(devClimate.lastState.humidity.val+"%");
+                                textView_battery.setText(devClimate.lastState.battery.val);
+                                textView_window.setText(devHM_SEC.state);
+
+                                //Toast.makeText(getActivity().getApplicationContext(), devHM_SEC.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
 
                 } catch (java.net.ConnectException ex) {
                     ex.printStackTrace();

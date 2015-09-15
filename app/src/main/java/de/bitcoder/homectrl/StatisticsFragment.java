@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import de.bitcoder.homectrl.R;
+import de.fzi.fhemapi.model.server.DeviceResponse;
+import de.fzi.fhemapi.model.server.subelements.State;
+import de.fzi.fhemapi.server.FHEMServer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +66,9 @@ public class StatisticsFragment extends Fragment {
         }
     }
 
+    private BarChart chart = null;
+    private BarChart linesChart = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,20 +77,20 @@ public class StatisticsFragment extends Fragment {
         System.out.println("onCreateView");
         Resources res = getResources();
 
-        final BarChart pie = (BarChart) view.findViewById(R.id.chart);
-        pie.setChartType(0);
-        pie.setShowText(false);
-
-        pie.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+        chart = (BarChart) view.findViewById(R.id.chart);
+        chart.setChartType(0);
+        chart.setShowText(false);
+/*
+        chart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
         for (int i = 0; i < 30; i++ )
         {
             float randomNum = 10 + (int)(Math.random()*90);
-            pie.addItem("Ganymede", randomNum, res.getColor(i%2==0?R.color.lcars_green:R.color.lcars_green_dark));
+            chart.addItem("Ganymede", randomNum, res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
 
         }
-        pie.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
-
-
+        chart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+*/
+        /*
         final BarChart levels = (BarChart) view.findViewById(R.id.chart2);
         levels.setChartType(1);
         levels.setShowText(false);
@@ -97,19 +103,21 @@ public class StatisticsFragment extends Fragment {
 
         }
         levels.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
-
-        final BarChart bars = (BarChart) view.findViewById(R.id.chart3);
-        bars.setChartType(2);
-        bars.setShowText(false);
-
-        bars.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+*/
+        linesChart = (BarChart) view.findViewById(R.id.chart3);
+        linesChart.setChartType(2);
+        linesChart.setShowText(false);
+/*
+        linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
         for (int i = 0; i < 30; i++ )
         {
             float randomNum = 10 + (int)(Math.random()*90);
-            bars.addItem("Ganymede", randomNum, res.getColor(i%2==0?R.color.lcars_green:R.color.lcars_green_dark));
+            linesChart.addItem("Ganymede", randomNum, res.getColor(i%2==0?R.color.lcars_green:R.color.lcars_green_dark));
 
         }
-        bars.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+        linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+*/
+        updateTempHistory();
 
         return view;
     }
@@ -153,4 +161,48 @@ public class StatisticsFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+
+    private void updateTempHistory()
+    {
+        System.out.println("LCARSWeatherFragment::updateWeather()");
+
+        Thread thread = new Thread(new Runnable() {
+            private String result;
+
+            @Override
+            public void run() {
+                try {
+
+                    final DeviceResponse devWetter = FHEMServer.getInstance().getDevice(LCARSConfig.BadHistory);
+                    System.out.println("devWetter: " + devWetter.toString());
+                    System.out.println("devWetter.state: " + devWetter.state);
+                    //devWetter.fhemElement.history.get()
+                    //devWetter.fhemElement.history.size()
+                    //System.out.println("devWetter.lastState.readings = " + devWetter.lastState.readings.toString());
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = getResources();
+
+
+                            linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+                            for (int i = 0; i < devWetter.fhemElement.history.size(); i++ )
+                            {
+                                System.out.println("Adding " + devWetter.fhemElement.history.get(i).val + " float: " + Float.parseFloat(devWetter.fhemElement.history.get(i).val));
+                                linesChart.addItem("Ganymede", Float.parseFloat(devWetter.fhemElement.history.get(i).val), res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
+
+                            }
+                            linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+
+                        }
+                    });
+
+                } catch (java.net.ConnectException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+    }
 }

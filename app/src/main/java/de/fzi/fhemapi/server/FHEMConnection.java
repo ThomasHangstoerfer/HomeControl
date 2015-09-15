@@ -46,8 +46,10 @@ import de.fzi.fhemapi.model.server.DeviceResponse;
 import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.model.server.ResponseObject;
 import de.fzi.fhemapi.model.server.subelements.Reading;
+import de.fzi.fhemapi.model.server.subelements.fhem;
 import de.fzi.fhemapi.server.constants.MethodNames;
 import de.fzi.fhemapi.server.core.ContentParamDeserializer;
+import de.fzi.fhemapi.server.core.FhemElementDeserializer;
 import de.fzi.fhemapi.server.core.ReadingDeserializer;
 
 /**
@@ -334,6 +336,7 @@ public class FHEMConnection {
 			}
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.registerTypeAdapter(Reading.class, new ReadingDeserializer());
+			gsonBuilder.registerTypeAdapter(fhem.class, new FhemElementDeserializer());
 			Gson gson = gsonBuilder.create();
 
 			// TODO hier sollte clazz anstelle von DeviceResponse.class verwendet werden
