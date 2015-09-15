@@ -186,7 +186,7 @@ public class StatisticsFragment extends Fragment {
 
 
                             linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
-                            for (int i = 0; i < devWetter.fhemElement.history.size(); i++ )
+                            for (int i = devWetter.fhemElement.history.size()-1; i >= 0; i-- )
                             {
                                 System.out.println("Adding " + devWetter.fhemElement.history.get(i).val + " float: " + Float.parseFloat(devWetter.fhemElement.history.get(i).val));
                                 linesChart.addItem("Ganymede", Float.parseFloat(devWetter.fhemElement.history.get(i).val), res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
