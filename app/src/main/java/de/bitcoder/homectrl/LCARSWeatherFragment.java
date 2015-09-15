@@ -159,7 +159,7 @@ public class LCARSWeatherFragment extends Fragment {
                     final DeviceResponse devWetter = FHEMServer.getInstance().getDevice(LCARSConfig.Wetter);
                     System.out.println("devWetter: " + devWetter.toString());
                     System.out.println("devWetter.state: " + devWetter.state);
-
+                    //System.out.println("devWetter.lastState.readings = " + devWetter.lastState.readings.toString());
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -171,9 +171,11 @@ public class LCARSWeatherFragment extends Fragment {
                             textView_fc3_day.setText(state_fc3_dow.val);
                             State state_fc4_dow = (State)devWetter.lastState.readings.get("fc4_day_of_week");
                             textView_fc4_day.setText(state_fc4_dow.val);
-
-
-
+/*
+                            fc3_condition
+                                    fc1_low_c
+                                    fc1_hight_c
+*/
                             //if(Drawable.createFromPath(drawableFile.getAbsolutePath())!=null){
 
                              //  State state_fc1_icon = (State)devWetter.lastState.readings.get("fc4_icon");
