@@ -15,6 +15,7 @@ HomeCtrl
 + Konfigurationen welche Devices / DeviceNamen in der App verwendet werden sollen, könnten als Attribute in FHEM direkt
   gespeichert werden, dann braucht man in der App nur noch IP-Adresse und Port konfigurieren. Alles andere holt sich
   die App dann aus den Attributen. 
++ LED: LastMode-Implementierung kann aus der App entfernt werden. Wird jetzt auf dem fhem-server gemacht.
 
 Fonts:
   datei nach assets/fonts/

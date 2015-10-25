@@ -929,19 +929,29 @@ sub TheOpenTransporter_FntGetDevice($$)
 		$fntHash->{"Content"} = TheOpenTransporter_ReturnMessage($hash, "Device ".$device." existiert nicht!", 1, 4);
 		return undef;
 	}
+	if ($device eq "WzStehlampe")
+	{
+		return undef;
+	} 
 	my %sendHash = %{$defs{$device}};
 	$sendHash{guid} = $defs{$device}{NR};
 	$sendHash{ATTRIBUTES} = getAllAttr($device);
 	$sendHash{SETS}   = getAllSets($device);
 	$sendHash{EATTR}   = $attr{$device};
 
+	print "=============================================\n";
+	print "device: $device \n";
+	print "=============================================\n";
 	# Log 2, "$hash->{NAME} on port $hash->{PORT} opened! (Version: $hash->{VERSION})";
 	print map { "$_: $sendHash{$_}\n" } keys %sendHash;
-	my $debug = map { "$_: $sendHash{$_}\n" } keys %sendHash;
-	TheOpenTransporter_Log($hash, 1, "\nsendHash: \n" . $debug . "\n\n");
+	#my $debug = map { "$_: $sendHash{$_}\n" } keys %sendHash;
+	#TheOpenTransporter_Log($hash, 1, "\n=======================================================\nsendHash: \n" . $debug . "\n\n");
 
 
-	$fntHash->{"Content"} = JSON->new->allow_nonref->allow_blessed->utf8->encode(\%sendHash);
+	#$fntHash->{"Content"} = JSON->new->allow_nonref->allow_blessed->utf8->encode(\%sendHash);
+
+	my $json = $fntHash->{"Content"} = JSON->new->allow_nonref->allow_blessed->utf8->max_depth(8192);
+	$json->encode(\%sendHash);
 	return undef;
 }
 

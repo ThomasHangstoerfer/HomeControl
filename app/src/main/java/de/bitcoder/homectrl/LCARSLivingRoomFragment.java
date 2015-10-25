@@ -50,7 +50,7 @@ public class LCARSLivingRoomFragment extends Fragment {
     private int green = 0;
     private int blue = 0;
 
-    private int LEDclickStep = 5;
+    private int LEDclickStep = 10;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -110,7 +110,33 @@ public class LCARSLivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                sendColor(); // use saved color
+                // LastMode is now stored in fhem-server
+                //sendColor(); // use saved color
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("STATE", "on");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LEDswitch, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
 
             } // onClick
         });
@@ -126,8 +152,8 @@ public class LCARSLivingRoomFragment extends Fragment {
                         try {
 
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("off", "");
-                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LED, params);
+                            params.put("STATE", "off");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_LEDswitch, params);
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override

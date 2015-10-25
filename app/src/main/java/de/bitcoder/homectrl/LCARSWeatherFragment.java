@@ -163,6 +163,10 @@ public class LCARSWeatherFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+
+                            // TODO der erste angezeigte Tag sollte immer der aktuelle Tage sein,
+                            // d.h. nicht immer mit Montag starten
                             State state_fc1_dow = (State)devWetter.lastState.readings.get("fc1_day_of_week");
                             textView_fc1_day.setText(state_fc1_dow.val);
                             State state_fc2_dow = (State)devWetter.lastState.readings.get("fc2_day_of_week");

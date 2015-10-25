@@ -166,6 +166,7 @@ public class FHEMConnection {
                         paramsString, null).toURL();
             else
                 url = new URI("http", serverIP + ":" + port, "/" + methodName, null, null).toURL();
+			System.out.println("URL = " + url.toString());
 /*
             if(!doPostRequest)
                 url = new URI("http", serverIP + ":" + port, "", methodName
