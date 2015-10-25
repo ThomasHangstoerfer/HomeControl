@@ -2,6 +2,7 @@ package de.bitcoder.homectrl;
 
 
 import android.app.Fragment;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ public class LCARSBadFragment extends Fragment {
     TextView textView_humidity = null;
     TextView textView_battery = null;
     TextView textView_window = null;
+
+    private BarChart linesChart = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,10 @@ public class LCARSBadFragment extends Fragment {
         textView_battery = (TextView) view.findViewById(R.id.textView_battery);
         textView_window = (TextView) view.findViewById(R.id.textView_window);
 
+        linesChart = (BarChart) view.findViewById(R.id.chartTemp);
+        linesChart.setChartType(2);
+        linesChart.setShowText(false);
+
         return view;
     }
 
@@ -49,6 +56,8 @@ public class LCARSBadFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
         System.out.println("onViewStateRestored");
         updateAll();
+
+        updateTempHistory();
     }
 
     private void updateAll()
@@ -91,6 +100,79 @@ public class LCARSBadFragment extends Fragment {
                             }
                         });
                     }
+
+                } catch (java.net.ConnectException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+    }
+
+
+    private void updateTempHistory()
+    {
+        System.out.println("LCARSWeatherFragment::updateWeather()");
+
+        Thread thread = new Thread(new Runnable() {
+            private String result;
+
+            @Override
+            public void run() {
+                try {
+
+                    final DeviceResponse devWetter = FHEMServer.getInstance().getDevice(LCARSConfig.BadHistory);
+                    System.out.println("devWetter: " + devWetter.toString());
+                    System.out.println("devWetter.state: " + devWetter.state);
+                    //devWetter.fhemElement.history.get()
+                    //devWetter.fhemElement.history.size()
+                    //System.out.println("devWetter.lastState.readings = " + devWetter.lastState.readings.toString());
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = getResources();
+
+
+                            linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+
+
+                            //devWetter.fhemElement.history = generateTestData();
+
+
+                            for (int i = devWetter.fhemElement.history.size() - 1; i >= 0; i--) {
+                                float val = 0;
+                                String valStr = devWetter.fhemElement.history.get(i).val;
+                                String valType = null;
+                                try {
+                                    val = Float.parseFloat(valStr);
+                                } catch (NumberFormatException nfe) {
+                                    // there might be an additional string, like 'temperature: 23'
+                                    String[] strings = valStr.split(" ");
+                                    if (strings.length == 2) {
+                                        valType = strings[0];
+                                        val = Float.parseFloat(strings[1]);
+                                    }
+                                } catch (NullPointerException npe) {
+
+                                }
+                                if (valType != null && valType.startsWith("temperature")) {
+                                    //System.out.println("Adding temperature: " + valStr + " float: " + val);
+                                    //linesChart.addItem("Temperature", val, res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
+                                } else if (valType != null && valType.startsWith("humidity")) {
+                                    //System.out.println("Adding humidity: " + valStr + " float: " + val);
+                                    linesChart.addItem("Humidity", val, res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
+                                } else {
+                                    //System.out.println("Adding " + valStr + " float: " + val);
+                                    linesChart.addItem("temp", val, res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
+                                }
+                                //linesChart.addItem(valType, val, res.getColor(i % 2 == 0 ? R.color.lcars_green : R.color.lcars_green_dark));
+
+                            }
+                            linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+
+                        }
+                    });
 
                 } catch (java.net.ConnectException ex) {
                     ex.printStackTrace();

@@ -876,14 +876,15 @@ public class BarChart extends ViewGroup {
                 canvas.setMatrix(mTransform);
             }
 
+            // Border
             Paint p = new Paint(mPiePaint);
             p.setStyle(Paint.Style.STROKE);
-            p.setStrokeWidth(3);
+            p.setStrokeWidth(1);
             p.setColor(getResources().getColor(R.color.lcars_orange_dark));
             canvas.drawRect(mBounds, p);
 
             float oldStrokeWidth = mPiePaint.getStrokeWidth();
-            mPiePaint.setStrokeWidth( 4 );
+            mPiePaint.setStrokeWidth( 1 );
 
             float lastHeight = -1;
 
