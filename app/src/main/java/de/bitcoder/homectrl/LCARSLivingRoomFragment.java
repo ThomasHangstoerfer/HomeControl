@@ -50,7 +50,6 @@ public class LCARSLivingRoomFragment extends Fragment {
     private int green = 0;
     private int blue = 0;
 
-    private int LEDclickStep = 10;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -334,7 +333,7 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnRedUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                red = Math.min(100, red + LEDclickStep);
+                red = Math.min(100, red + LCARSConfig.LEDclickStep);
                 updateLEDValues();
                 sendColor();
             } // onClick
@@ -343,7 +342,7 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnRedDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                red = Math.max(0, red - LEDclickStep);
+                red = Math.max(0, red - LCARSConfig.LEDclickStep);
                 updateLEDValues();
                 sendColor();
             } // onClick
@@ -352,7 +351,7 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnGreenUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                green = Math.min(100, green + LEDclickStep);
+                green = Math.min(100, green + LCARSConfig.LEDclickStep);
                 updateLEDValues();
                 sendColor();
             } // onClick
@@ -361,7 +360,7 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnGreenDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                green = Math.max(0, green - LEDclickStep);
+                green = Math.max(0, green - LCARSConfig.LEDclickStep);
                 updateLEDValues();
                 sendColor();
             } // onClick
@@ -371,7 +370,7 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnBlueUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                blue = Math.min(100, blue + LEDclickStep);
+                blue = Math.min(100, blue + LCARSConfig.LEDclickStep);
                 updateLEDValues();
                 sendColor();
             } // onClick
@@ -380,7 +379,7 @@ public class LCARSLivingRoomFragment extends Fragment {
         btnBlueDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                blue = Math.max(0, blue - LEDclickStep);
+                blue = Math.max(0, blue - LCARSConfig.LEDclickStep);
                 updateLEDValues();
                 sendColor();
             } // onClick

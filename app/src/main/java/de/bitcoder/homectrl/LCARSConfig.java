@@ -25,4 +25,6 @@ public class LCARSConfig {
     public static final String Wetter = "Wetter";
 
     public static final String BadHistory = "BadHist";
+
+    public static int LEDclickStep = 10;
 }

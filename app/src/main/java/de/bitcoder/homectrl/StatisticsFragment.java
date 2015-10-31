@@ -749,6 +749,8 @@ public class StatisticsFragment extends Fragment {
 
                 } catch (java.net.ConnectException ex) {
                     ex.printStackTrace();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });

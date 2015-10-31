@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.fzi.fhemapi.model.server.DeviceResponse;
+import de.fzi.fhemapi.model.server.MessageResponse;
 import de.fzi.fhemapi.server.FHEMServer;
 
 public class LCARSBadFragment extends Fragment {
@@ -44,9 +50,53 @@ public class LCARSBadFragment extends Fragment {
         textView_battery = (TextView) view.findViewById(R.id.textView_battery);
         textView_window = (TextView) view.findViewById(R.id.textView_window);
 
-        linesChart = (BarChart) view.findViewById(R.id.chartTemp);
-        linesChart.setChartType(2);
-        linesChart.setShowText(false);
+        //linesChart = (BarChart) view.findViewById(R.id.chartTemp);
+        if ( linesChart != null )
+        {
+            linesChart.setChartType(2);
+            linesChart.setShowText(false);
+        }
+
+
+
+        Button btnControlMode= (Button) view.findViewById(R.id.button_ControlMode);
+        btnControlMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // LastMode is now stored in fhem-server
+                //sendColor(); // use saved color
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("controlMode", "boost");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.Bad_CC_RT_Clima, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+
+            } // onClick
+        });
+
+
+
 
         return view;
     }
@@ -55,9 +105,9 @@ public class LCARSBadFragment extends Fragment {
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         System.out.println("onViewStateRestored");
-        updateAll();
+        //updateAll();
 
-        updateTempHistory();
+        //updateTempHistory();
     }
 
     private void updateAll()
@@ -113,7 +163,7 @@ public class LCARSBadFragment extends Fragment {
 
     private void updateTempHistory()
     {
-        System.out.println("LCARSWeatherFragment::updateWeather()");
+        System.out.println("LCARSWeatherFragment::updateTempHistory()");
 
         Thread thread = new Thread(new Runnable() {
             private String result;
@@ -133,9 +183,10 @@ public class LCARSBadFragment extends Fragment {
                         public void run() {
                             Resources res = getResources();
 
+                            if ( linesChart != null ) {
 
-                            linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
-
+                                linesChart.addItem("Ganymede", 50, res.getColor(R.color.lcars_green_dark));
+                            }
 
                             //devWetter.fhemElement.history = generateTestData();
 

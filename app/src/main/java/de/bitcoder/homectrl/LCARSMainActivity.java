@@ -1,13 +1,16 @@
 package de.bitcoder.homectrl;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+//import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,23 +52,41 @@ public class LCARSMainActivity extends Activity
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/lcarsgtj3.ttf")
-                        .setFontAttrId(R.attr.fontPath)
-                        .build()
-        );
+                .setDefaultFontPath("fonts/lcarsgtj3.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
 
         mainActIntent = new Intent(this, MainActivity.class);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String lastMode = preferences.getString("lastMode", "");
+        System.out.println("lastMode " + lastMode);
+        Fragment defaultFrag = null;
+        if ( lastMode.equals( "Bathroom") )
+            defaultFrag = (Fragment )new LCARSBadFragment();
+        if ( lastMode.equals("Statistics") )
+            defaultFrag = (Fragment )new StatisticsFragment();
+        if ( lastMode.equals("Party") )
+            defaultFrag = (Fragment )new LCARSPartyFragment();
+
+        if ( defaultFrag == null )
+        {
+            System.out.println("HIER");
+            defaultFrag = (Fragment)new LCARSLivingRoomFragment();
+        }
+
 
         setContentView(R.layout.activity_lcarsmain);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     /*.add(R.id.container, new LCARSPartyFragment()*/
-                    .add(R.id.container, new LCARSLivingRoomFragment())
+                    /*.add(R.id.container, new LCARSLivingRoomFragment())*/
+                    .add(R.id.container, defaultFrag)
                     .commit();
         }
 
@@ -82,6 +103,10 @@ public class LCARSMainActivity extends Activity
                         .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mPartyFragment)
                         .commit();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("lastMode", "Party");
+                editor.commit();
             }
         });
         Button btnBad = (Button) findViewById(R.id.button_bad);
@@ -96,6 +121,10 @@ public class LCARSMainActivity extends Activity
                         .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mBadFragment)
                         .commit();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("lastMode", "Bathroom");
+                editor.commit();
             }
         });
 
@@ -128,6 +157,10 @@ public class LCARSMainActivity extends Activity
                         .setCustomAnimations(R.anim.fadein, R.anim.fadeout/*, R.anim.fadein_delay, R.anim.fadeout_delay*/)
                         .replace(R.id.container, mStatisticsFragment)
                         .commit();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("lastMode", "Statistics");
+                editor.commit();
             }
         });
         Button btnSettings = (Button) findViewById(R.id.button_settings);
