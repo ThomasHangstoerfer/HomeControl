@@ -17,10 +17,11 @@ public class LCARSConfig {
     public static final String Bad_Fenstersensor = "BadFenster";
     public static final String Bad_Thermostat_Climate = "BadThermostat_Climate";
 
-    public static final String WZ_Stehlampe = "WzStehlampe";
-    public static final String WZ_LED       = "LED";
-    public static final String WZ_LEDswitch = "LEDswitch";
-    public static final String WZ_Rolladen  = "WzRolladen";
+    public static final String WZ_Stehlampe   = "WzStehlampe";
+    public static final String WZ_Deckenlampe = "WzDeckenlampe";
+    public static final String WZ_LED         = "LED";
+    public static final String WZ_LEDswitch   = "LEDswitch";
+    public static final String WZ_Rolladen    = "WzRolladen";
 
     public static final String Wetter = "Wetter";
 

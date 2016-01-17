@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     tools:context="de.bitcoder.homectrl.LCARSLivingRoomFragment"
     android:rowCount="5"
-    android:columnCount="7"
+    android:columnCount="8"
     android:useDefaultMargins="true">
 
     <!-- TODO: Update blank fragment layout -->
@@ -162,11 +162,21 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="LAMP\nON"
+        android:id="@+id/button_WzDeckenlampe_ON"
+        android:background="@drawable/lcars_button_lightpurple_up"
+        android:layout_row="1"
+        android:layout_column="5" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="BLIND\nUP"
         android:id="@+id/button_WzRolladenUp"
         android:background="@drawable/lcars_button_orange_up"
         android:layout_row="1"
-        android:layout_column="5"
+        android:layout_column="6"
         android:layout_gravity="center" />
 
     <TextView
@@ -175,7 +185,7 @@
         android:textAppearance="@style/textLCARS_large"
         android:text="20%"
         android:id="@+id/textView_WzRolladenValue"
-        android:layout_column="5"
+        android:layout_column="6"
         android:layout_row="2"
         android:textAlignment="gravity"
         android:gravity="center_vertical|center_horizontal"
@@ -191,7 +201,17 @@
         android:id="@+id/button_WzRolladenStop"
         android:background="@drawable/lcars_button_orange_right"
         android:layout_row="2"
-        android:layout_column="6" />
+        android:layout_column="7" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LAMP\nOFF"
+        android:id="@+id/button_WzDeckenlampe_OFF"
+        android:background="@drawable/lcars_button_lightpurple_down"
+        android:layout_row="3"
+        android:layout_column="5" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -201,7 +221,7 @@
         android:id="@+id/button_WzRolladenDown"
         android:background="@drawable/lcars_button_orange_down"
         android:layout_row="3"
-        android:layout_column="5"
+        android:layout_column="6"
         android:layout_gravity="center" />
 
 </GridLayout>

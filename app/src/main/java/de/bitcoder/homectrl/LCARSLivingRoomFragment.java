@@ -236,6 +236,69 @@ public class LCARSLivingRoomFragment extends Fragment {
             } // onClick
         });
 
+        Button btnDeckenLampeOn= (Button) view.findViewById(R.id.button_WzDeckenlampe_ON);
+        btnDeckenLampeOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("on", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Deckenlampe, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+        Button btnDeckenLampeOff= (Button) view.findViewById(R.id.button_WzDeckenlampe_OFF);
+        btnDeckenLampeOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    private String result;
+
+                    @Override
+                    public void run() {
+                        try {
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("off", "");
+                            final MessageResponse resp = FHEMServer.getInstance().setDevice(LCARSConfig.WZ_Deckenlampe, params);
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity().getApplicationContext(), resp.toString(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (java.net.ConnectException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            } // onClick
+        });
+
         Button btnBlindUp = (Button) view.findViewById(R.id.button_WzRolladenUp);
         btnBlindUp.setOnClickListener(new View.OnClickListener() {
             @Override
